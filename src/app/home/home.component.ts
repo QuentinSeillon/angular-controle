@@ -13,14 +13,17 @@ export class HomeComponent implements OnInit {
   playerName = '';
   isPlayerNameConfirmed = false;
 
-  categories = ['Category_1', 'Category_2', 'Category_3', 'Category_4'];
+  categories: any[] = this.categoryService.categories;
+
 
   constructor(private router: Router, private authService: AuthService, private categoryService: CategoryService) { }
 
   ngOnInit(): void {
     this.authService.isUserConnected();
     this.playerName = this.authService.user?.username || '';
+    this.categoryService.getCategories();
   }
+
 
   get isPlayerNameFill() {
     return this.playerName.length < 1;
