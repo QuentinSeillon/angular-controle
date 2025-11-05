@@ -11,6 +11,8 @@ import { QuizService } from "../shared/services/quiz.service";
 export class QuizComponent implements OnInit {
   isQuizFinished = this.quizService.isQuizFinished;
   playerName = '';
+  category?: string;
+
 
   constructor(
     private quizService: QuizService,
@@ -19,9 +21,11 @@ export class QuizComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      this.quizService.playerName = params['playerName'];
-      this.playerName = params['playerName'];
+    this.playerName = this.route.snapshot.paramMap.get('playerName') ?? '';
+    this.route.queryParamMap.subscribe(params => {
+      this.category = params.get('category') ?? undefined;
+      // Appelle ton service pour charger les questions de this.category
+      // ex: this.quizService.loadByCategory(this.category)
     });
   }
 

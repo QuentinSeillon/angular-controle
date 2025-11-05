@@ -11,9 +11,13 @@
     </button>
   </form>
   <button class="home_quiz-btn btn--outline" (click)="navigateToQuiz()" [disabled]="isPlayerNameFill">Démarrer</button>
-  <button class="btn--outline" (click)="navigateToCategory()">Category_1</button>
-  <button class="btn--outline" (click)="navigateToCategory()">Category_2</button>
-  <button class="btn--outline" (click)="navigateToCategory()">Category_3</button>
-  <button class="btn--outline" (click)="navigateToCategory()">Category_4</button>
+  <div class="home_categories">
+    <button class="btn--outline"
+            *ngFor="let cat of categories"
+            (click)="navigateToCategory(cat)"
+            [disabled]="isPlayerNameFill">
+      {{ cat }}
+    </button>
+  </div>
 
 </section>
