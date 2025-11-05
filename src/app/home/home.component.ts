@@ -12,6 +12,8 @@ export class HomeComponent implements OnInit {
   playerName = '';
   isPlayerNameConfirmed = false;
 
+  categoryName = '';
+
   constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
@@ -26,6 +28,10 @@ export class HomeComponent implements OnInit {
 
   navigateToQuiz() {
     this.router.navigate(['/quiz', this.playerName]);
+  }
+
+  navigateToCategory() {
+    this.router.navigate(['/quiz', this.categoryName]);
   }
 
   confirmPseudo() {
